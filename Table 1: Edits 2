@@ -1,0 +1,15 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+labels = ['Starr County', 'Claiborne Parish County', 'Sumter County', 'Holmes County', 'Crawford County', 'McCreary County']
+median_household_income = [27133, 26877, 21663, 20330, 38017, 19264]
+population_poor = [63420, 16296, 13084, 18267, 39099, 17748]
+
+x = np.arange(len(labels))  # the label locations
+width = 0.2  # the width of the bars
+
+plt.bar(np.arange(len(median_household_income)), median_household_income, color='darkgreen', width=width)
+plt.bar(np.arange(len(population_poor))+ width, population_poor, color='blue', width=width)
+
+plt.show()
