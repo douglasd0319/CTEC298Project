@@ -1,0 +1,40 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+labels = ['Starr County', 'Claiborne Parish County', 'Sumter County', 'Holmes County', 'Crawford County', 'McCreary County']
+median_household_income = [27133, 26877, 21663, 20330, 38017, 19264]
+population_poor = [63420, 16296, 13084, 18267, 39099, 17748]
+
+x = np.arange(len(labels))  # the label locations
+width = 0.35  # the width of the bars
+
+fig, ax = plt.subplots()
+rects1 = ax.bar(x - width/2, median_household_income, width, label='Median Household Income')
+rects2 = ax.bar(x + width/2, population_poor, width, label='Population')
+
+# Add some text for labels, title and custom x-axis tick labels, etc.
+ax.set_ylabel('Population')
+ax.set_title('Population vs. Median Household Income for Improvrish Counties')
+ax.set_xticks(x)
+ax.set_xticklabels(labels)
+ax.legend()
+
+
+def autolabel(rects):
+    """Attach a text label above each bar in *rects*, displaying its height."""
+    for rect in rects:
+        height = rect.get_height()
+        ax.annotate('{}'.format(height),
+                    xy=(rect.get_x() + rect.get_width() / 2, height),
+                    xytext=(0, 3),  # 3 points vertical offset
+                    textcoords="offset points",
+                    ha='center', va='bottom')
+
+
+autolabel(rects1)
+autolabel(rects2)
+
+fig.tight_layout()
+
+plt.show()
